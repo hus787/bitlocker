@@ -16,6 +16,8 @@ def generate_passwords():
 if __name__ == "__main__":
     for pwd in generate_passwords():
         print(pwd)
+        command_to_run = "manage-bde.exe -unlock d: -pw" #or anything else
+        run_command_and_interact(command_to_run, pwd)
 
 def run_command_and_interact(command, prompt_responses):
     """
@@ -46,11 +48,6 @@ def run_command_and_interact(command, prompt_responses):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-# Example usage:
-command_to_run = "manage-bde.exe -unlock d: -pw" #or anything else
-responses = generate_passwords()
-
-run_command_and_interact(command_to_run, responses)
 
 #Example for ping
 #run_command_and_interact("ping 127.0.0.1 -t", ["CTRL+C"]) # example using CTRL+C. Note that CTRL+C is not a regular string, and requires special handling.
