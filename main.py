@@ -14,7 +14,7 @@ def generate_passwords():
 
 
 
-def run_command_and_interact(command, prompt_responses):
+def run_command_and_interact(command, response):
     """
     Runs a Windows command in a new command prompt and interacts with it.
 
