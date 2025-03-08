@@ -30,7 +30,7 @@ def run_command_and_interact(command, prompt_responses):
         # Give the command prompt time to open and the command to start. Adjust as needed.
         time.sleep(2)  # Wait for the command prompt to open and the initial command to run
 
-         pyautogui.typewrite(response + '\n') #type the response and press enter
+        pyautogui.typewrite(response + '\n') #type the response and press enter
 
         # Optionally, you can wait for the process to finish
         process.wait()
