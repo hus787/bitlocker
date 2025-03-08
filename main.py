@@ -31,7 +31,11 @@ def run_command_and_interact(command, response):
         time.sleep(0.1)  # Wait for the command prompt to open and the initial command to run
         
         pyautogui.typewrite(response + '\n') #type the response and press enter
+        process.poll()  # Check if process has finished
+        exit_code = process.returncode
 
+        if exit_code == 0:
+            print("-" * 80) #long line
     except FileNotFoundError:
         print("Command prompt not found.")
     except Exception as e:
