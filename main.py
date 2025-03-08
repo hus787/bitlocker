@@ -1,6 +1,21 @@
 import subprocess
 import time
 import pyautogui
+import itertools
+
+def generate_passwords():
+    first_chars = ['M', 'm', 'R', 'r', 'S', 's', 'P', 'p']
+    second_chars = ['-', '_', '']
+    digits = [f"{i:04d}" for i in range(10000)]  # Generates 0000 to 9999
+
+    for first, second, digit in itertools.product(first_chars, second_chars, digits):
+        password = f"{first}{second}{digit}"
+        yield password
+
+# Example usage to print generated passwords
+if __name__ == "__main__":
+    for pwd in generate_passwords():
+        print(pwd)
 
 def run_command_and_interact(command, prompt_responses):
     """
@@ -32,21 +47,10 @@ def run_command_and_interact(command, prompt_responses):
         print(f"An error occurred: {e}")
 
 # Example usage:
-command_to_run = "python my_script.py" #or anything else
-responses = ["input1", "input2", "input3"]
-
-# Create a simple python script for testing.
-with open("my_script.py", "w") as f:
-    f.write("input1 = input('Enter input 1: ')\n")
-    f.write("input2 = input('Enter input 2: ')\n")
-    f.write("input3 = input('Enter input 3: ')\n")
-    f.write("print(f'Input 1: {input1}, Input 2: {input2}, Input 3: {input3}')\n")
+command_to_run = "manage-bde.exe -unlock d: -pw" #or anything else
+responses = generate_passwords()
 
 run_command_and_interact(command_to_run, responses)
-
-#cleanup the temporary file
-import os
-os.remove("my_script.py")
 
 #Example for ping
 #run_command_and_interact("ping 127.0.0.1 -t", ["CTRL+C"]) # example using CTRL+C. Note that CTRL+C is not a regular string, and requires special handling.
