@@ -30,7 +30,7 @@ def run_command_and_interact(command, response):
         # Give the command prompt time to open and the command to start. Adjust as needed.
         time.sleep(1)  # Wait for the command prompt to open and the initial command to run
         
-        pyautogui.typewrite(response + '\n') #type the response and press enter
+        pyautogui.typewrite('Aa 12345678.' + '\n') #type the response and press enter
         process.poll()  # Check if process has finished
         exit_code = process.returncode
 
@@ -45,7 +45,7 @@ def run_command_and_interact(command, response):
 if __name__ == "__main__":
     for pwd in generate_passwords():
         print(pwd)
-        command_to_run = "manage-bde.exe -unlock d: -pw" #or anything else
+        command_to_run = "manage-bde.exe -unlock f: -pw" #or anything else
         run_command_and_interact(command_to_run, pwd)
 
 #Example for ping
