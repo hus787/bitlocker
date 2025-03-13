@@ -12,7 +12,7 @@ def generate_passwords():
         password = f"{first}{second}{digit}"
         yield password
 def generate_passwords2():
-    first_chars = ['M', 'm', 'R', 'r', 'S', 's', 'P', 'p', 'ر','پ','س','م']
+    first_chars = ['P', 'p', 'M', 'm', 'R', 'r', 'S', 's', 'ر','پ','س','م']
     second_chars = ['-', '_', '']
     digits = ["2541","5498","1388","1396","1370","3652","6509","1358"]
 
