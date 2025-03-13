@@ -11,6 +11,16 @@ def generate_passwords():
     for first, second, digit in itertools.product(first_chars, second_chars, digits):
         password = f"{first}{second}{digit}"
         yield password
+def generate_passwords3():
+    first_chars = ['M']
+    second_chars = ['-', '_', '']
+    digits = [f"{i:04d}" for i in range(100)]  # Generates 0000 to 9999
+    passwords = []
+    for first, second, digit in itertools.product(first_chars, second_chars, digits):
+        password = f"{first}{second}{digit}"
+        passwords.append(password)
+    return passwords + ['Aa 12345678.']
+    
 def generate_passwords2():
     first_chars = ['P', 'p', 'M', 'm', 'R', 'r', 'S', 's', 'ر','پ','س','م']
     second_chars = ['-', '_', '']
@@ -51,9 +61,9 @@ def run_command_and_interact(command, response):
 
 # Example usage to print generated passwords
 if __name__ == "__main__":
-    for pwd in generate_passwords2():
+    for pwd in generate_passwords3():
         print(pwd)
-        command_to_run = "manage-bde.exe -unlock d: -pw" #or anything else
+        command_to_run = "manage-bde.exe -unlock f: -pw" #or anything else
         run_command_and_interact(command_to_run, pwd)
 
 #Example for ping
