@@ -11,6 +11,14 @@ def generate_passwords():
     for first, second, digit in itertools.product(first_chars, second_chars, digits):
         password = f"{first}{second}{digit}"
         yield password
+def generate_passwords2():
+    first_chars = ['M', 'm', 'R', 'r', 'S', 's', 'P', 'p', 'ر','پ','س','م']
+    second_chars = ['-', '_', '']
+    digits = ["2541","5498","1388","1396","1370,"3652","6509,"1358"]
+
+    for first, second, digit in itertools.product(first_chars, second_chars, digits):
+        password = f"{first}{second}{digit}"
+        yield password
 
 
 
@@ -30,7 +38,7 @@ def run_command_and_interact(command, response):
         # Give the command prompt time to open and the command to start. Adjust as needed.
         time.sleep(1)  # Wait for the command prompt to open and the initial command to run
         
-        pyautogui.typewrite('Aa 12345678.' + '\n') #type the response and press enter
+        pyautogui.typewrite(response + '\n') #type the response and press enter
         process.poll()  # Check if process has finished
         exit_code = process.returncode
 
@@ -43,7 +51,7 @@ def run_command_and_interact(command, response):
 
 # Example usage to print generated passwords
 if __name__ == "__main__":
-    for pwd in generate_passwords():
+    for pwd in generate_passwords2():
         print(pwd)
         command_to_run = "manage-bde.exe -unlock f: -pw" #or anything else
         run_command_and_interact(command_to_run, pwd)
