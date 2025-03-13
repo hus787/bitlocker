@@ -61,9 +61,9 @@ def run_command_and_interact(command, response):
 
 # Example usage to print generated passwords
 if __name__ == "__main__":
-    for pwd in generate_passwords3():
+    for pwd in generate_passwords2():
         print(pwd)
-        command_to_run = "manage-bde.exe -unlock f: -pw" #or anything else
+        command_to_run = "manage-bde.exe -unlock d: -pw" #or anything else
         run_command_and_interact(command_to_run, pwd)
 
 #Example for ping
