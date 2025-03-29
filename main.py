@@ -34,26 +34,31 @@ def generate_passwords2():
 
 def run_command_and_interact(command, response):
     """
-    Runs a Windows command in a new command prompt and interacts with it.
+    Runs a Windows command in a new command prompt, interacts with it by typing the response,
+    waits for a reasonable amount of time, then closes the command prompt.
 
     Args:
         command: The command to execute as a string.
-        prompt_responses: A list of strings, each representing a response to a prompt.
+        response: A string response to type into the prompt.
     """
-
     try:
         # Start the command in a new command prompt
         process = subprocess.Popen(['cmd', '/k', command], creationflags=subprocess.CREATE_NEW_CONSOLE)
 
-        # Give the command prompt time to open and the command to start. Adjust as needed.
-        time.sleep(1)  # Wait for the command prompt to open and the initial command to run
+        # Wait for the command prompt to open and the command to start.
+        time.sleep(1)
         
-        pyautogui.typewrite(response + '\n') #type the response and press enter
-        process.poll()  # Check if process has finished
-        exit_code = process.returncode
-
-        if exit_code == 0:
-            print("-" * 80) #long line
+        # Send the response (password) and press enter
+        pyautogui.typewrite(response + '\n')
+        
+        # Wait for the command to process the input (adjust the duration as needed)
+        time.sleep(2)
+        
+        # Terminate the command prompt window
+        process.terminate()
+        process.wait()
+        
+        print("-" * 80)  # print a long line after process termination
     except FileNotFoundError:
         print("Command prompt not found.")
     except Exception as e:
