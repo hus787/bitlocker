@@ -30,7 +30,7 @@ def generate_passwords2():
         password = f"{first}{second}{digit}"
         yield password
 def generate_passwords4():
-    first_chars = ['p', 'M', 'm', 'R', 'r', 'S', 's', 'ر','پ','س','م']
+    first_chars = ['p', 'M', 'm', 'R', 'r', 'S', 's', 'P' 'ر','پ','س','م']
     second_chars = ['-', '_', '']
     digits = [f"{i:04d}" for i in range(10000)]  # Generates 0000 to 9999
     for first, second, digit in itertools.product(first_chars, second_chars, digits):
@@ -48,18 +48,18 @@ def run_command_and_interact(command, response):
     """
     try:
         # Start the command in a new command prompt
-        process = subprocess.Popen(['cmd', '/k', command], creationflags=subprocess.CREATE_NEW_CONSOLE)
+        process = subprocess.Popen(['cmd', '/k', response], creationflags=subprocess.CREATE_NEW_CONSOLE)
 
         # Wait for the command prompt to open and the command to start.
         time.sleep(1)
         
         # Send the response (password) and press enter
-        pyautogui.typewrite(response + '\n')
+        pyautogui.typewrite(command + '\n')
         
         # Wait for the command to process the input (adjust the duration as needed)
-        time.sleep(1.5)
+        time.sleep(1)
         pyautogui.typewrite(response + '\n')
-        time.sleep(0.5)
+        time.sleep(1)
         # Terminate the command prompt window
         process.terminate()
         process.wait()
